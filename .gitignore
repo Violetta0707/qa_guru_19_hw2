@@ -168,7 +168,14 @@ cython_debug/
 #.idea/
 
 # Ruff stuff:
-.ruff_cache/
+.ruff_ca
 
 # PyPI configuration file
 .pypirc
+
+.idea/
+git rm -r --cached .idea/
+git commit -m "Убрал .idea из отслеживания и добавил в .gitignore"
+git push
+
+
