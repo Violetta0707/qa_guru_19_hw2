@@ -32,6 +32,6 @@ def test_duckgo_search_should_not_find_results():
     except:
         pass
 
-    nonsense_query = 'ghkgujh'
+    nonsense_query = 'ghkgujhhjgood'
     browser.element('[name="q"]').should(be.blank).type(nonsense_query).press_enter()
-    browser.element('body').should(have.text('результаты не найдены'))
+    browser.element('body').should(have.text('No results'))
