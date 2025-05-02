@@ -1,4 +1,3 @@
-
 import pytest
 from selene import have, be, by
 from selene.support.shared import browser
@@ -15,22 +14,15 @@ def setup_browser():
 def test_duckgo_search_should_find_results():
     browser.open('https://duckduckgo.com')
 
-    try:
-        browser.element(by.text('Accept all')).click()
-    except:
-        pass
-
     browser.element('[name="q"]').should(be.blank).type('yashaka/selene').press_enter()
-    browser.element('#search').should(have.text('yashaka/selene'))
+    browser.element('#search').should(have.value('yashaka/selene'))
 
 
 def test_duckgo_search_should_not_find_results():
     browser.open('https://duckduckgo.com')
 
-    try:
+    if browser.element(by.text('Accept all')).matching(be.visible):
         browser.element(by.text('Accept all')).click()
-    except:
-        pass
 
     nonsense_query = 'ghkgujhhjgood'
     browser.element('[name="q"]').should(be.blank).type(nonsense_query).press_enter()
